@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * 디자인 토큰 — shadcn 변수 체계(--background, --primary …)를 그대로 쓰되
+ * 회계 앱용으로 채도를 낮추고 대비·밀도를 조정했다.
+ * 밀도: 기본 13px / 표 셀 12.5px / 행 높이 28px (너무 작지 않은 컴팩트)
+ */
+:root {
+  --radius: 0.375rem;
+
+  --background: oklch(0.975 0.002 250);
+  --foreground: oklch(0.21 0.015 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.015 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.015 255);
+  --primary: oklch(0.49 0.17 258);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.955 0.004 250);
+  --secondary-foreground: oklch(0.28 0.02 255);
+  --muted: oklch(0.955 0.004 250);
+  --muted-foreground: oklch(0.5 0.015 255);
+  --accent: oklch(0.94 0.01 255);
+  --accent-foreground: oklch(0.25 0.02 255);
+  --border: oklch(0.91 0.006 250);
+  --input: oklch(0.88 0.008 250);
+  --ring: oklch(0.55 0.15 258);
+  --sidebar: oklch(0.96 0.004 250);
+  --row-alt: oklch(0.985 0.002 250);
+  --row-hover: oklch(0.955 0.012 255);
+  --row-selected: oklch(0.93 0.03 258);
+
+  --ok: oklch(0.55 0.13 155);
+  --ok-bg: oklch(0.95 0.04 155);
+  --warn: oklch(0.58 0.14 70);
+  --warn-bg: oklch(0.96 0.05 85);
+  --danger: oklch(0.55 0.19 27);
+  --danger-bg: oklch(0.95 0.04 25);
+  --debit: oklch(0.42 0.02 255);
+  --credit: oklch(0.5 0.17 27);
+}
+
+.dark {
+  --background: oklch(0.17 0.008 255);
+  --foreground: oklch(0.93 0.005 250);
+  --card: oklch(0.205 0.009 255);
+  --card-foreground: oklch(0.93 0.005 250);
+  --popover: oklch(0.22 0.01 255);
+  --popover-foreground: oklch(0.93 0.005 250);
+  --primary: oklch(0.68 0.14 258);
+  --primary-foreground: oklch(0.16 0.01 255);
+  --secondary: oklch(0.26 0.01 255);
+  --secondary-foreground: oklch(0.9 0.005 250);
+  --muted: oklch(0.25 0.01 255);
+  --muted-foreground: oklch(0.7 0.012 255);
+  --accent: oklch(0.29 0.014 255);
+  --accent-foreground: oklch(0.95 0.005 250);
+  --border: oklch(0.3 0.01 255);
+  --input: oklch(0.34 0.012 255);
+  --ring: oklch(0.65 0.13 258);
+  --sidebar: oklch(0.15 0.008 255);
+  --row-alt: oklch(0.19 0.008 255);
+  --row-hover: oklch(0.26 0.014 255);
+  --row-selected: oklch(0.31 0.05 258);
+
+  --ok: oklch(0.76 0.14 155);
+  --ok-bg: oklch(0.28 0.05 155);
+  --warn: oklch(0.8 0.13 80);
+  --warn-bg: oklch(0.3 0.05 80);
+  --danger: oklch(0.72 0.17 25);
+  --danger-bg: oklch(0.3 0.07 25);
+  --debit: oklch(0.85 0.01 250);
+  --credit: oklch(0.76 0.14 25);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-row-alt: var(--row-alt);
+  --color-row-hover: var(--row-hover);
+  --color-row-selected: var(--row-selected);
+  --color-ok: var(--ok);
+  --color-ok-bg: var(--ok-bg);
+  --color-warn: var(--warn);
+  --color-warn-bg: var(--warn-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-debit: var(--debit);
+  --color-credit: var(--credit);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --font-sans: "Pretendard Variable", Pretendard, "Segoe UI Variable", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", Consolas, "D2Coding", monospace;
+  --text-xs: 0.6875rem;   /* 11px */
+  --text-sm: 0.78125rem;  /* 12.5px */
+  --text-base: 0.8125rem; /* 13px */
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { font-size: 16px; }
+  body {
+    @apply bg-background text-foreground font-sans text-base antialiased;
+    font-feature-settings: "tnum" 1, "cv11" 1;
+    overflow: hidden;
+    user-select: none;
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--input); background-clip: content-box; border: 2px solid transparent; }
+}
+
+/* 금액·계정코드 등 숫자열: 고정폭 + 우측정렬용 */
+.num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
